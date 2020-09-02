@@ -14,11 +14,10 @@ pip install bufflog
 
 ```python
 
-import bufflog
+from bufflog import bufflog
 
-bufflog.debug('Hello debug', {"some":"stuff"});
+bufflog.debug('Hello debug', context={"some":"stuff"});
 bufflog.info('Hello info');
-bufflog.notice('Hello notice with context', {"foo":"bar"});
 bufflog.error('Hello error');
 bufflog.critical('Hello critical');
 ```
