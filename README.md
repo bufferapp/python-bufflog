@@ -34,3 +34,18 @@ If you wish to see more logs, simply set the `LOG_LEVEL` to the desired level. H
 | WARNING  | Exceptional occurrences that are not errors. Undesirable things that are not necessarily wrong.                                        | Use of deprecated APIs,  poor use of an API, unauthorized access, pod restart because of memory limit ...         |
 |  ERROR   | Runtime errors. Highlight when the current flow of execution is stopped due to a failure.                                              | Exceptions messages, incorect credentials or permissions...                                                       |
 | CRITICAL | Critical conditions. Describe an unrecoverable application, system crash, or a catastrophic failure that requires immediate attention. | Application component unavailable, unexpected exception. entire website down, database unavailable ...            |
+
+## Development
+
+For local development, create a new virtual environment and activate it. That can be done with Python `venv` module.
+
+```bash
+$ python -m venv venv
+$ source venv/bin/activate
+```
+
+Once the virtual environment is activated, install `python-bufflog` locally:
+
+```bash
+$ pip install -e .
+```
