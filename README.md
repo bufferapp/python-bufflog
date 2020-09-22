@@ -8,10 +8,10 @@ Python logger for Buffer services.
 
 ## Installation
 
-You can use `pip` to install `bufflog`:
+You can use `pip` to install `python-bufflog`:
 
 ```python
-pip install bufflog
+pip install python-bufflog
 ```
 
 ## Usage
