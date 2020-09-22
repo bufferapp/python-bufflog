@@ -20,10 +20,10 @@ pip install python-bufflog
 
 from bufflog import bufflog
 
-bufflog.debug('Hello debug', context={"some":"stuff"});
-bufflog.info('Hello info');
-bufflog.error('Hello error');
-bufflog.critical('Hello critical');
+bufflog.debug('Hello debug', context={"some":"stuff"})
+bufflog.info('Hello info')
+bufflog.error('Hello error')
+bufflog.critical('Hello critical')
 ```
 
 ## Log verbosity levels
