@@ -8,6 +8,7 @@ from structlog.processors import JSONRenderer
 from structlog.stdlib import filter_by_level
 from structlog.stdlib import add_log_level_number
 
+import ddtrace
 from ddtrace.helpers import get_correlation_ids
 
 

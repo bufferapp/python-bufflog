@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="python-bufflog",
-    version="0.0.3",
+    version="0.0.4",
     author="David Gasquez",
     author_email="davidgasquez@buffer.com",
     description="Python logger for Buffer services",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/bufferapp/python-bufflog",
-    install_requires=["structlog"],
+    install_requires=["structlog", "ddtrace"],
     packages=setuptools.find_packages(),
 )
