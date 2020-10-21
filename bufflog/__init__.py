@@ -70,4 +70,4 @@ def get_logger():
         cache_logger_on_first_use=True,
         processors=processors,
     )
-    bufflog = structlog.get_logger()
+    return structlog.get_logger()
