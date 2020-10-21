@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="python-bufflog",
-    version="0.0.6",
+    version="0.1.0",
     author="David Gasquez",
     author_email="davidgasquez@buffer.com",
     description="Python logger for Buffer services",

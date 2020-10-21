@@ -61,15 +61,13 @@ processors = [
 # if ddtrace_available:
 #     processors.insert(0, tracer_injection)
 
-structlog.configure(
-    context_class=dict,
-    logger_factory=structlog.stdlib.LoggerFactory(),
-    wrapper_class=structlog.stdlib.BoundLogger,
-    cache_logger_on_first_use=True,
-    processors=processors,
-)
-
 
 def get_logger():
+    structlog.configure(
+        context_class=dict,
+        logger_factory=structlog.stdlib.LoggerFactory(),
+        wrapper_class=structlog.stdlib.BoundLogger,
+        cache_logger_on_first_use=True,
+        processors=processors,
+    )
     bufflog = structlog.get_logger()
-    bufflog._logger.setLevel(LOG_LEVEL)
