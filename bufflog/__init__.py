@@ -69,5 +69,7 @@ structlog.configure(
     processors=processors,
 )
 
-# bufflog = structlog.get_logger()
-# bufflog._logger.setLevel(LOG_LEVEL)
+
+def get_logger():
+    bufflog = structlog.get_logger()
+    bufflog._logger.setLevel(LOG_LEVEL)
