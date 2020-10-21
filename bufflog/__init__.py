@@ -1,15 +1,21 @@
 import structlog
 import logging
-import sys
 import os
+import sys
 
-from structlog import wrap_logger
+try:
+    import ddtrace
+    from ddtrace.helpers import get_correlation_ids
+
+    ddtrace_available = True
+except ImportError:
+    ddtrace_available = False
+
 from structlog.processors import JSONRenderer
 from structlog.stdlib import filter_by_level
 from structlog.stdlib import add_log_level_number
 
-import ddtrace
-from ddtrace.helpers import get_correlation_ids
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 
 
 def tracer_injection(logger, log_method, event_dict):
@@ -40,17 +46,28 @@ def increase_level_numbers(_, __, event_dict):
     return event_dict
 
 
-level = os.getenv("LOG_LEVEL", "INFO")
+processors = [
+    filter_by_level,
+    rename_message_key,
+    add_log_level_number,
+    increase_level_numbers,
+    structlog.stdlib.PositionalArgumentsFormatter(),
+    structlog.processors.StackInfoRenderer(),
+    structlog.processors.format_exc_info,
+    structlog.processors.UnicodeDecoder(),
+    JSONRenderer(),
+]
 
-logging.basicConfig(stream=sys.stdout, format="%(message)s", level=level)
-bufflog = wrap_logger(
-    logging.getLogger(__name__),
-    processors=[
-        tracer_injection,
-        filter_by_level,
-        rename_message_key,
-        add_log_level_number,
-        increase_level_numbers,
-        JSONRenderer(),
-    ],
+if ddtrace_available:
+    processors.insert(0, tracer_injection)
+
+structlog.configure(
+    context_class=dict,
+    logger_factory=structlog.stdlib.LoggerFactory(),
+    wrapper_class=structlog.stdlib.BoundLogger,
+    cache_logger_on_first_use=True,
+    processors=processors,
 )
+
+bufflog = structlog.get_logger()
+bufflog.setLevel(LOG_LEVEL)
