@@ -70,4 +70,4 @@ structlog.configure(
 )
 
 bufflog = structlog.get_logger()
-bufflog.setLevel(LOG_LEVEL)
+bufflog._logger.setLevel(LOG_LEVEL)
