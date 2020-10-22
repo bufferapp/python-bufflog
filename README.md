@@ -18,11 +18,11 @@ pip install python-bufflog
 
 ```python
 
-from bufflog import get_logger
+import bufflog
 
-bufflog = get_logger()
+bufflog = bufflog.get_logger(__name__)
 
-bufflog.debug('Hello debug', context={"some":"stuff"})
+bufflog.debug('Hello debug', extra={"some":"stuff"})
 bufflog.info('Hello info')
 bufflog.error('Hello error')
 bufflog.critical('Hello critical')
