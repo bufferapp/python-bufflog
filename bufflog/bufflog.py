@@ -1,10 +1,13 @@
 import structlog
 import logging
 import sys
+import os
 
 from structlog.processors import JSONRenderer
 from structlog.stdlib import filter_by_level
 from structlog.stdlib import add_log_level_number
+
+from .datadog import tracer_injection
 
 
 def rename_message_key(_, __, event_dict):
@@ -19,12 +22,15 @@ def increase_level_numbers(_, __, event_dict):
     return event_dict
 
 
-def get_logger(name=__name__):
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+
+
+def get_logger(name=None, datadog=False):
 
     logging.basicConfig(
         format="%(message)s",
         stream=sys.stdout,
-        level=logging.INFO,
+        level=LOG_LEVEL,
     )
 
     processors = [
@@ -38,6 +44,10 @@ def get_logger(name=__name__):
         structlog.processors.UnicodeDecoder(),
         JSONRenderer(),
     ]
+
+    if datadog:
+        processors.insert(0, tracer_injection)
+
     structlog.configure(
         context_class=dict,
         logger_factory=structlog.stdlib.LoggerFactory(),
@@ -45,4 +55,5 @@ def get_logger(name=__name__):
         cache_logger_on_first_use=True,
         processors=processors,
     )
-    return structlog.get_logger(name).new()
+
+    return structlog.get_logger(name)

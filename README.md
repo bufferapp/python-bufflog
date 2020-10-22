@@ -18,9 +18,9 @@ pip install python-bufflog
 
 ```python
 
-from bufflog import get_logger
+import bufflog
 
-bufflog = get_logger()
+bufflog = bufflog.get_logger(__name__)
 
 bufflog.debug('Hello debug', context={"some":"stuff"})
 bufflog.info('Hello info')
