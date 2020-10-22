@@ -1,7 +1,7 @@
 # Python Bufflog
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bufferapp/python-bufflog/Publish%20Python%20%F0%9F%90%8D%20distributions%20%F0%9F%93%A6%20to%20PyPI) 
-![PyPI](https://img.shields.io/pypi/v/python-bufflog?label=version&style=flat)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bufferapp/python-bufflog/Publish%20Python%20%F0%9F%90%8D%20distributions%20%F0%9F%93%A6%20to%20PyPI)
+[![PyPI](https://img.shields.io/pypi/v/python-bufflog?label=version&style=flat)](https://pypi.org/project/python-bufflog/)
 ![GitHub](https://img.shields.io/github/license/bufferapp/python-bufflog?style=flat)
 
 Python logger for Buffer services.
